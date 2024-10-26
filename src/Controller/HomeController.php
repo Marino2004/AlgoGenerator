@@ -13,15 +13,18 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(Request $request): Response
     {
-        $form = $this->createForm(AlgorithmType::class)
-                     ->handleRequest($request);
+        $form = $this
+            ->createForm(AlgorithmType::class)
+            ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
-
+            dd($form->getData());
         }
+
+        
         return $this->render('home/index.html.twig', [
-            "form" => $form
+            "form" => $form->createView(),
         ]);
     }
 }
