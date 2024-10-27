@@ -6,7 +6,6 @@ use App\Config\Level;
 use App\Entity\Algorithm;
 use App\Repository\AlgorithmRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Form\Extension\Core\Type\EnumType;
 
 class AlgorithmService
 {
@@ -19,7 +18,19 @@ class AlgorithmService
     public function createAlgorithm (string $theme, Level $level): Algorithm
     {
         $algorithm = (new Algorithm)
-            ->setThe
+            ->setTheme($theme)
+            ->setLevel($level);
+        
+        $this->entityManager->persist($algorithm);
+        $this->entityManager->flush();
+
+        return $algorithm;
     }
+
+    public function findAllAlgorithms(): array
+    {
+        return $this->algorithmRepository->findBy([],['id' => 'DESC']);
+    }
+
 
 }

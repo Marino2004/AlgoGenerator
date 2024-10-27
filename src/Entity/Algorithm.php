@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Config\Level;
 use App\Repository\AlgorithmRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,17 +21,11 @@ class Algorithm
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'string', enumType: Level::class, length: 255)]
     private ?string $level = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $typeOfReturn = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $signature = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $exemple = null;
+    private ?string $theme = null;
 
     public function getId(): ?int
     {
@@ -66,45 +61,21 @@ class Algorithm
         return $this->level;
     }
 
-    public function setLevel(string $level): static
+    public function setLevel(Level $level): static
     {
         $this->level = $level;
 
         return $this;
     }
 
-    public function getTypeOfRetour(): ?string
+    public function getTheme(): ?string
     {
-        return $this->typeOfReturn;
+        return $this->theme;
     }
 
-    public function settypeOfReturn(string $typeOfReturn): static
+    public function setTheme(string $theme): static
     {
-        $this->typeOfReturn = $typeOfReturn;
-
-        return $this;
-    }
-
-    public function getSignature(): ?string
-    {
-        return $this->signature;
-    }
-
-    public function setSignature(string $signature): static
-    {
-        $this->signature = $signature;
-
-        return $this;
-    }
-
-    public function getExemple(): ?string
-    {
-        return $this->exemple;
-    }
-
-    public function setExemple(string $exemple): static
-    {
-        $this->exemple = $exemple;
+        $this->theme = $theme;
 
         return $this;
     }
