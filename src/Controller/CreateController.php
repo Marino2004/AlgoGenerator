@@ -10,16 +10,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-class HomeController extends AbstractController
+class CreateController extends AbstractController
 {
     public function __construct(
         private readonly OpenAiChatService $openAiChatService,
         private readonly AlgorithmService $algorithms,
-    )
-    {
-        
-    }
-    #[Route('/', name: 'app_home')]
+    ) { }
+
+    #[Route('/create', name: 'app_create')]
     public function index(Request $request): Response
     {
         $form = $this
@@ -28,13 +26,13 @@ class HomeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $this->openAiChatService->createAlgorithm($form->getData());
+            // $this->openAiChatService->createAlgorithm($form->getData());
+            // dd($form->getData());
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_create');
         }
-
         
-        return $this->render('home/index.html.twig', [
+        return $this->render('algorithm/create.html.twig', [
             "form" => $form->createView(),
             "algorithms" => $this->algorithms->findAllAlgorithms(),
         ]);

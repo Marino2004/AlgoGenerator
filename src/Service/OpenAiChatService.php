@@ -22,23 +22,23 @@ class OpenAiChatService
     public function createAlgorithm(AlgorithmModel $model): void
     {
         $chat = $this->openAiChat();
-        $tool = FunctionBuilder::buildFunctionInfo($this->algorithmService, 'createAlgorithm');
-        $chat->addTool($tool);
+        // $tool = FunctionBuilder::buildFunctionInfo($this->algorithmService, 'createAlgorithm');
+        // $chat->addTool($tool);
         $chat->setSystemMessage("Vous êtes un assistant IA serviable.Lorsque vous disposez de suffisament d'informations, vous pouvez créer un sujet d'algorithme en fournissant un titre, une signature, un type de retour et un exemple.");
         $chat->generateText(
-            sprintf("Créer un sujet d'Algorithme ayant comme thème : %s, et un niveau de difficulté %s,
+            sprintf("Créer un sujet d'Algorithme ayant comme thème : %s, et un niveau de difficulté %s",
             
                 $model->theme,
-                $model->level,
-            ")
+                $model->level->name
+            )
         );
     }
 
     private function openAiChat(): OpenAIChat
     {
         $config = new OpenAIConfig();
-        $config->model = OpenAIChatModel::Gpt35Turbo->name;
-        // dd(OpenAIChatModel::Gpt35Turbo->name);
+        $config->apiKey = $this->openAiApiKey;
+        $config->model = OpenAIChatModel::Gpt35Turbo->value;
 
         return new OpenAIChat($config);
     }
