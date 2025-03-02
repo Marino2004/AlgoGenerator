@@ -9,7 +9,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class GetController extends AbstractController
 {
-
     public function __construct(
         private readonly AlgorithmService $algorithm,
     ) { }
@@ -19,7 +18,7 @@ class GetController extends AbstractController
     {
         $result = $this->algorithm->findAllAlgorithms();
 
-        if (count($result) === 0)
+        if (0 === count($result))
             dd("void data on result");
 
         return $this->render('algorithm/get.html.twig', [

@@ -3,10 +3,11 @@
 namespace App\Form;
 
 use App\Config\Level;
-use App\Form\Model\AlgorithmModel;
+use App\Entity\Algorithm;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EnumType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -26,6 +27,24 @@ class AlgorithmType extends AbstractType
                 'class' => Level::class,
                 'label' => 'Niveau'
             ])
+            ->add('title', TextType::class, [
+                'label' => 'Titre',
+                "attr" => [
+                    'placeholder' => 'Algorithme de Tri'
+                ]
+            ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Sujet',
+                "attr" => [
+                    'placholder' => "Sujet de l'alogrithme"
+                ]
+            ])
+            ->add('solution', TextareaType::class, [
+                'label' => 'Solution',
+                "attr" => [
+                    'placholder' => "Solution de l'algorithme"
+                ]
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Créer'
             ])
@@ -35,7 +54,7 @@ class AlgorithmType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => AlgorithmModel::class,
+            'data_class' => Algorithm::class,
         ]);
     }
 }

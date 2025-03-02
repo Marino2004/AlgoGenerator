@@ -22,10 +22,13 @@ class Algorithm
     private ?string $description = null;
 
     #[ORM\Column(type: 'string', enumType: Level::class, length: 255)]
-    private ?string $level = null;
+    private ?Level $level = null;
 
     #[ORM\Column(length: 255)]
     private ?string $theme = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $solution = null;
 
     public function getId(): ?int
     {
@@ -56,12 +59,12 @@ class Algorithm
         return $this;
     }
 
-    public function getLevel(): ?string
+    public function getLevel(): ?Level
     {
         return $this->level;
     }
 
-    public function setLevel(Level $level): static
+    public function setLevel($level): static
     {
         $this->level = $level;
 
@@ -76,6 +79,18 @@ class Algorithm
     public function setTheme(string $theme): static
     {
         $this->theme = $theme;
+
+        return $this;
+    }
+
+    public function getSolution(): ?string
+    {
+        return $this->solution;
+    }
+
+    public function setSolution(?string $solution): static
+    {
+        $this->solution = $solution;
 
         return $this;
     }

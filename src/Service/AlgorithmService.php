@@ -15,11 +15,14 @@ class AlgorithmService
         private readonly AlgorithmRepository $algorithmRepository,
     ){ }
 
-    public function createAlgorithm(string $theme, Level $level): Algorithm
+    public function createAlgorithm(string $theme, Level $level, string $title, string $description="description de l'algorithme", string $solution): Algorithm
     {
         $algorithm = (new Algorithm)
             ->setTheme($theme)
-            ->setLevel($level);
+            ->setLevel($level)
+            ->setTitle($title)
+            ->setDescription($description)
+            ->setSolution($solution);
         
         $this->entityManager->persist($algorithm);
         $this->entityManager->flush();
@@ -31,6 +34,4 @@ class AlgorithmService
     {
         return $this->algorithmRepository->findBy([],['id' => 'DESC']);
     }
-
-
 }

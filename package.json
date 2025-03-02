@@ -26,6 +26,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "@picocss/pico": "^2.0.6"
+        "@picocss/pico": "^2.0.6",
+        "highlight.js": "^11.11.1"
     }
 }

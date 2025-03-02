@@ -3,5 +3,12 @@
 {% block title %}Algorithms{% endblock %}
 
 {% block body %}
-
+    {% for data in result %}
+        <h3>
+            {{ data.title }}
+        </h3>
+        <p>
+            {{ (data.description) }}
+        </p>
+    {% endfor %}
 {% endblock %}

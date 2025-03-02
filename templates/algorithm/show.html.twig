@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{algorithm.title }}{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('script/open-close-modal.js') }}"></script>
+    <script src="{{ asset('script/switch-mode.js') }}"></script>
+    <script src="{{ asset('script/highlight.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class='algorithm-data'>
+        <div class='data'>
+            <h3>{{ algorithm.title }}</h3>
+            <p>{{ algorithm.theme }}<br></p>
+            <u><strong>Niveau :</strong></u> <mark>{{ algorithm.level.value }}</mark><hr>
+            <p style="text-align: justify;">{{ (algorithm.description|nl2br) }}<hr></p>
+        </div>
+
+        <div class="button-group" style="display: flex; gap: 40px;">
+            <button>Exporter en PDF</button>
+            <button id='showModalButton' class="outline" >Afficher la solution</button>
+        </div>
+    <div>
+
+    <dialog id='solutionModal' close>
+    <article>
+            <header>
+                <button aria-label="Close" id="closeModalButton" rel="prev"></button>
+                <p><strong>PHP</strong></p>
+            </header>
+            <pre><code class="sql">{{ algorithm.solution|nl2br }}</code></pre>
+        </article>
+    </dialog>
+
+{% endblock %}
