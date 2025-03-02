@@ -1,12 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{algorithm.title }}{% endblock %}
+{% block title %}{{algorithm.title }} {% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+{% endblock %}
+
 
 {% block javascripts %}
-    <script src="{{ asset('script/open-close-modal.js') }}"></script>
-    <script src="{{ asset('script/switch-mode.js') }}"></script>
-    <script src="{{ asset('script/highlight.js') }}"></script>
+    {# {{ encore_entry_script_tags('highlight') }} #}
+    {{ encore_entry_script_tags('modal') }}
+    {{ encore_entry_script_tags('switch') }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/php.min.js"></script>
+    <script> hljs.highlightAll() </script>
 {% endblock %}
+
 
 {% block body %}
     <div class='algorithm-data'>
@@ -16,7 +26,6 @@
             <u><strong>Niveau :</strong></u> <mark>{{ algorithm.level.value }}</mark><hr>
             <p style="text-align: justify;">{{ (algorithm.description|nl2br) }}<hr></p>
         </div>
-
         <div class="button-group" style="display: flex; gap: 40px;">
             <button>Exporter en PDF</button>
             <button id='showModalButton' class="outline" >Afficher la solution</button>
@@ -24,12 +33,12 @@
     <div>
 
     <dialog id='solutionModal' close>
-    <article>
+        <article>
             <header>
                 <button aria-label="Close" id="closeModalButton" rel="prev"></button>
                 <p><strong>PHP</strong></p>
             </header>
-            <pre><code class="sql">{{ algorithm.solution|nl2br }}</code></pre>
+           <pre><code class="language-php">{{ algorithm.solution }}</code></pre>
         </article>
     </dialog>
 

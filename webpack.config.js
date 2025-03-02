@@ -21,6 +21,9 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/app.js')
+    // .addEntry('highlight', './assets/script/highlight.js')
+    .addEntry('modal', './assets/script/open-close-modal.js')
+    .addEntry('switch', './assets/script/switch-mode.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
