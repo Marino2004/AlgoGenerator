@@ -13,6 +13,7 @@ class AlgorithmService
     (
         private readonly EntityManagerInterface $entityManager,
         private readonly AlgorithmRepository $algorithmRepository,
+        private readonly PdfService $pdfService,
     ){ }
 
     public function createAlgorithm(string $theme, Level $level, string $title, string $solution, string $description="description de l'algorithme"): Algorithm
@@ -33,5 +34,11 @@ class AlgorithmService
     public function findAllAlgorithms(): array
     {
         return $this->algorithmRepository->findBy([],['id' => 'DESC']);
+    }
+
+    public function exportToPdf(Algorithm $algorithm)
+    {
+        return  $this->pdfService->exportAlgorithmToPdf($algorithm);
+
     }
 }

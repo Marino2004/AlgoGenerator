@@ -1,5 +1,5 @@
 {% extends 'base.html.twig' %}
-l
+
 {% block title %}{{algorithm.title }} {% endblock %}
 
 {% block stylesheets %}
@@ -31,7 +31,7 @@ l
             <p style="text-align: justify;">{{ (algorithm.description|nl2br) }}<hr></p>
         </div>
         <div class="button-group" style="display: flex; gap: 40px;">
-            <button>Exporter en PDF</button>
+            <button onclick="window.location.href='{{ path('app_pdf', {id: algorithm.id}) }}'">Exporter en PDF</button>
             <button id='showModalButton' class="outline" >Afficher la solution</button>
         </div>
     <div>
