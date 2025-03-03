@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sujet d'Algorithme</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        header {
+            text-align: left;
+            padding: 20px;
+            background: #f4f4f4;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+        .subject, .theme, .niveau {
+            font-size: 15px;
+            font-weight: bold;
+            margin: 0;
+            text-align: left;
+        }
+        .sujet {
+            text-align: justify;
+            margin: 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #000;
+        }
+        .sujet-title {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .text-complex { 
+            color: rgb(229, 75, 75);
+        }
+        .text-moyen { 
+            color: rgb(242, 168, 8); 
+        }
+        .text-easy { 
+            color: rgb(129, 225, 11); 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <p class="subject"> {{ title }}</p>
+        <p class="theme"> Thème : {{ theme }}</p>
+        <p class="niveau"> Niveau : <span class="
+                        {% set levelClass = {
+                            'Moyen': 'text-moyen',
+                            'Facile': 'text-easy'
+                        }[level] | default('text-complex') %}
+                        {{ levelClass }}
+                    ">{{ level }}</p>
+    </header>
+    <div class="sujet">
+        <p class="sujet-title">Sujet :</p>
+        <p>
+            {{ description|nl2br }}
+        </p>
+    </div>
+</body>
+</html>
