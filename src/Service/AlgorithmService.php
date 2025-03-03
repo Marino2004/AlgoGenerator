@@ -16,7 +16,7 @@ class AlgorithmService
         private readonly PdfService $pdfService,
     ){ }
 
-    public function createAlgorithm(string $theme, Level $level, string $title, string $solution, string $description="description de l'algorithme"): Algorithm
+    public function createAlgorithm(string $theme, Level $level, string $title, string $description, string $solution): Algorithm
     {
         $algorithm = (new Algorithm)
             ->setTheme($theme)
