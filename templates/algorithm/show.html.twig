@@ -21,7 +21,13 @@
         <div class='data'>
             <h3>{{ algorithm.title }}</h3>
             <p>{{ algorithm.theme }}<br></p>
-            <u><strong>Niveau :</strong></u> <mark>{{ algorithm.level.value }}</mark><hr>
+            <u><strong>Niveau :</strong></u> <span class="
+                        {% set levelClass = {
+                            'Moyen': 'text-moyen',
+                            'Facile': 'text-easy'
+                        }[algorithm.level.value] | default('text-complex') %}
+                        {{ levelClass }}
+                    ">{{ algorithm.level.value }}<hr>
             <p style="text-align: justify;">{{ (algorithm.description|nl2br) }}<hr></p>
         </div>
         <div class="button-group" style="display: flex; gap: 40px;">
