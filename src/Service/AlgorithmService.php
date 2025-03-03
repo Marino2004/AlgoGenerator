@@ -15,7 +15,7 @@ class AlgorithmService
         private readonly AlgorithmRepository $algorithmRepository,
     ){ }
 
-    public function createAlgorithm(string $theme, Level $level, string $title, string $description="description de l'algorithme", string $solution): Algorithm
+    public function createAlgorithm(string $theme, Level $level, string $title, string $solution, string $description="description de l'algorithme"): Algorithm
     {
         $algorithm = (new Algorithm)
             ->setTheme($theme)
