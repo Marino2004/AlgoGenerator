@@ -42,7 +42,8 @@ class AlgorithmType extends AbstractType
             ->add('solution', TextareaType::class, [
                 'label' => 'Solution',
                 "attr" => [
-                    'placholder' => "Solution de l'algorithme"
+                    'placholder' => "Solution de l'algorithme",
+                    'class' => 'code-editor' 
                 ]
             ])
             ->add('submit', SubmitType::class, [
